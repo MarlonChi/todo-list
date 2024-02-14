@@ -1,12 +1,28 @@
+import { FormEvent } from "react";
 import { PlusCircle } from "phosphor-react";
 
 import styles from "./NewTaskForm.module.css";
 
-export const NewTaskForm = () => {
+interface NewTaskFormProps {
+  task: string;
+  setTask: (task: string) => void;
+  handleCreateNewTask: (event: FormEvent<HTMLFormElement>) => void;
+}
+
+export const NewTaskForm = ({
+  task,
+  setTask,
+  handleCreateNewTask,
+}: NewTaskFormProps) => {
   return (
-    <form className={styles.newTaskForm}>
-      <input type="text" placeholder="Adicione uma nova tarefa" />
-      <button type="submit">
+    <form onSubmit={handleCreateNewTask} className={styles.newTaskForm}>
+      <input
+        type="text"
+        placeholder="Adicione uma nova tarefa"
+        value={task}
+        onChange={(event) => setTask(event.target.value)}
+      />
+      <button type="submit" disabled={task.length === 0}>
         Criar <PlusCircle size={16} />
       </button>
     </form>

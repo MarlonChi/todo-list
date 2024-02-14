@@ -3,7 +3,16 @@ import { Task } from "./Task";
 
 import styles from "./Tasks.module.css";
 
-export const Tasks = () => {
+interface Task {
+  id: string;
+  description: string;
+}
+
+interface TasksProps {
+  tasks: Task[];
+}
+
+export const Tasks = ({ tasks }: TasksProps) => {
   return (
     <section className={styles.tasks}>
       <header>
@@ -17,8 +26,9 @@ export const Tasks = () => {
         </div>
       </header>
       <div className={styles.taskList}>
-        <Task />
-        <Task />
+        {tasks.map((task: Task) => (
+          <Task key={task.id} id={task.id} description={task.description} />
+        ))}
         <ListEmpty />
       </div>
     </section>
