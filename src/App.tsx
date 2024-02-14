@@ -2,6 +2,7 @@ import { Header } from "./components/Header";
 import { NewTaskForm } from "./components/NewTaskForm";
 
 import styles from "./App.module.css";
+import { Tasks } from "./components/Tasks";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <div className={styles.container}>
         <NewTaskForm />
+        <Tasks />
       </div>
     </>
   );
