@@ -11,9 +11,10 @@ interface Task {
 
 interface TasksProps {
   tasks: Task[];
+  handleDeleteTask: (id: string) => void;
 }
 
-export const Tasks = ({ tasks }: TasksProps) => {
+export const Tasks = ({ tasks, handleDeleteTask }: TasksProps) => {
   const taskQuantity = tasks.length;
 
   const taskFinished = tasks.filter(
@@ -35,15 +36,21 @@ export const Tasks = ({ tasks }: TasksProps) => {
         </div>
       </header>
       <div className={styles.taskList}>
-        {tasks.map((task: Task) => (
-          <Task
-            key={task.id}
-            id={task.id}
-            description={task.description}
-            status={task.status}
-          />
-        ))}
-        <ListEmpty />
+        {tasks.length > 0 ? (
+          <>
+            {tasks.map((task: Task) => (
+              <Task
+                key={task.id}
+                id={task.id}
+                description={task.description}
+                status={task.status}
+                handleDeleteTask={handleDeleteTask}
+              />
+            ))}
+          </>
+        ) : (
+          <ListEmpty />
+        )}
       </div>
     </section>
   );

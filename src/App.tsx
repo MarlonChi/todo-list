@@ -30,6 +30,12 @@ function App() {
     setTask("");
   }
 
+  function handleDeleteTask(id: string) {
+    const updatedTasks = tasks.filter((item) => item.id !== id);
+
+    setTasks(updatedTasks);
+  }
+
   console.log(tasks);
 
   return (
@@ -41,7 +47,7 @@ function App() {
           setTask={setTask}
           handleCreateNewTask={handleCreateNewTask}
         />
-        <Tasks tasks={tasks} />
+        <Tasks tasks={tasks} handleDeleteTask={handleDeleteTask} />
       </div>
     </>
   );
