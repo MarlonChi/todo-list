@@ -1,0 +1,21 @@
+.listEmpty {
+  margin-top: 6.4rem;
+  color: var(--gray-300);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.listEmpty img {
+  margin-bottom: 1.6rem;
+}
+
+.listEmpty p {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.listEmpty p:last-child {
+  font-weight: 400;
+}

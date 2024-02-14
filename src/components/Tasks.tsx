@@ -1,4 +1,6 @@
+import { ListEmpty } from "./ListEmpty";
 import { Task } from "./Task";
+
 import styles from "./Tasks.module.css";
 
 export const Tasks = () => {
@@ -17,6 +19,7 @@ export const Tasks = () => {
       <div className={styles.taskList}>
         <Task />
         <Task />
+        <ListEmpty />
       </div>
     </section>
   );
