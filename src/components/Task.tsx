@@ -4,6 +4,7 @@ import styles from "./Task.module.css";
 interface Task {
   id: string;
   description: string;
+  status: "Em andamento" | "Concluída";
 }
 
 export const Task = ({ id, description }: Task) => {

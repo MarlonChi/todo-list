@@ -10,23 +10,27 @@ import styles from "./App.module.css";
 interface Task {
   id: string;
   description: string;
+  status: "Em andamento" | "Concluída";
 }
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState<string>("");
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
     const newUuid = uuid();
 
-    const newTask = {
+    const newTask: Task = {
       id: newUuid,
       description: task,
+      status: "Em andamento",
     };
 
     setTasks([...tasks, newTask]);
     setTask("");
   }
+
+  console.log(tasks);
 
   return (
     <>

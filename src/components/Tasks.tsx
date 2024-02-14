@@ -6,6 +6,7 @@ import styles from "./Tasks.module.css";
 interface Task {
   id: string;
   description: string;
+  status: "Em andamento" | "Concluída";
 }
 
 interface TasksProps {
@@ -13,21 +14,34 @@ interface TasksProps {
 }
 
 export const Tasks = ({ tasks }: TasksProps) => {
+  const taskQuantity = tasks.length;
+
+  const taskFinished = tasks.filter(
+    (task: Task) => task.status === "Concluída"
+  ).length;
+
   return (
     <section className={styles.tasks}>
       <header>
         <div className={styles.tasksCreated}>
           <strong>Tarefas criadas</strong>
-          <span>5</span>
+          <span>{taskQuantity}</span>
         </div>
         <div className={styles.tasksFinished}>
           <strong>Concluídas</strong>
-          <span>2 de 5</span>
+          <span>
+            {taskFinished} de {taskQuantity}
+          </span>
         </div>
       </header>
       <div className={styles.taskList}>
         {tasks.map((task: Task) => (
-          <Task key={task.id} id={task.id} description={task.description} />
+          <Task
+            key={task.id}
+            id={task.id}
+            description={task.description}
+            status={task.status}
+          />
         ))}
         <ListEmpty />
       </div>
