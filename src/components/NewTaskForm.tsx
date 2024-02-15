@@ -21,6 +21,7 @@ export const NewTaskForm = ({
         placeholder="Adicione uma nova tarefa"
         value={task}
         onChange={(event) => setTask(event.target.value)}
+        required
       />
       <button type="submit" disabled={task.length === 0}>
         Criar <PlusCircle size={16} />

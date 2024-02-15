@@ -12,9 +12,14 @@ interface Task {
 interface TasksProps {
   tasks: Task[];
   handleDeleteTask: (id: string) => void;
+  handleUpdateTask: (id: string, status: "Em andamento" | "Concluída") => void;
 }
 
-export const Tasks = ({ tasks, handleDeleteTask }: TasksProps) => {
+export const Tasks = ({
+  tasks,
+  handleDeleteTask,
+  handleUpdateTask,
+}: TasksProps) => {
   const taskQuantity = tasks.length;
 
   const taskFinished = tasks.filter(
@@ -45,6 +50,7 @@ export const Tasks = ({ tasks, handleDeleteTask }: TasksProps) => {
                 description={task.description}
                 status={task.status}
                 handleDeleteTask={handleDeleteTask}
+                handleUpdateTask={handleUpdateTask}
               />
             ))}
           </>

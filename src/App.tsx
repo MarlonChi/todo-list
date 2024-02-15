@@ -36,7 +36,19 @@ function App() {
     setTasks(updatedTasks);
   }
 
-  console.log(tasks);
+  const handleUpdateTask = (
+    id: string,
+    status: "Em andamento" | "Concluída"
+  ) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, status: status };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
 
   return (
     <>
@@ -47,7 +59,11 @@ function App() {
           setTask={setTask}
           handleCreateNewTask={handleCreateNewTask}
         />
-        <Tasks tasks={tasks} handleDeleteTask={handleDeleteTask} />
+        <Tasks
+          tasks={tasks}
+          handleDeleteTask={handleDeleteTask}
+          handleUpdateTask={handleUpdateTask}
+        />
       </div>
     </>
   );
