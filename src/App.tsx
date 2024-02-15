@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 import { Header } from "./components/Header";
@@ -36,10 +36,7 @@ function App() {
     setTasks(updatedTasks);
   }
 
-  const handleUpdateTask = (
-    id: string,
-    status: "Em andamento" | "Concluída"
-  ) => {
+  function handleUpdateTask(id: string, status: "Em andamento" | "Concluída") {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, status: status };
@@ -48,7 +45,30 @@ function App() {
     });
 
     setTasks(updatedTasks);
-  };
+  }
+
+  function saveTasksToLocalStorage(tasks: Task[]) {
+    localStorage.setItem("ToDoList@v1.0.0", JSON.stringify(tasks));
+  }
+
+  function getTasksFromLocalStorage() {
+    const savedTasks = localStorage.getItem("ToDoList@v1.0.0");
+    if (savedTasks) {
+      return JSON.parse(savedTasks) as Task[];
+    }
+    return [];
+  }
+
+  useEffect(() => {
+    const savedTasks = getTasksFromLocalStorage();
+    if (savedTasks.length > 0) {
+      setTasks(savedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    saveTasksToLocalStorage(tasks);
+  }, [tasks]);
 
   return (
     <>

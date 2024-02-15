@@ -14,10 +14,11 @@ interface Task {
 export const Task = ({
   id,
   description,
+  status,
   handleDeleteTask,
   handleUpdateTask,
 }: Task) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(status === "Concluída");
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
